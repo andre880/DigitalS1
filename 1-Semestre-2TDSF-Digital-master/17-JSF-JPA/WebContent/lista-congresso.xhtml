@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+	<h:messages errorClass="alert alert-danger"
+					infoClass="alert alert-success"/>
+		<h:dataTable value="#{listaCongressoBean.congresso}" 
+				var="c" styleClass="table">
+			<h:column>
+				<f:facet name="header">Tema</f:facet>
+				#{c.tema}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Valor</f:facet>
+				#{c.valor}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Local</f:facet>
+				#{c.local}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Data</f:facet>
+				<h:outputText value="#{c.data.time}">
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>
+			</h:column>
+		<h:column>
+			<!-- Não esquecer do form -->
+			<h:form>		
+				<h:commandLink action="cadastro-congresso" styleClass="btn btn-primary btn-sm">
+					<f:setPropertyActionListener value="#{c}" target="#{congressoBean.congresso}" />
+					<span class="glyphicon glyphicon-edit"></span>
+				</h:commandLink>		
+			</h:form>
+		</h:column>
+		<h:column>
+			<!-- Não esquecer do form -->
+			<h:form>		
+				<h:commandLink action="#{listaCongressoBean.excluir(c.codigo)}"  
+				styleClass="btn btn-danger btn-sm" style="margin-left:10px;" >
+					<span class="glyphicon glyphicon-remove"></span>
+				</h:commandLink>		
+			</h:form>
+		</h:column>
+		</h:dataTable>
+	</ui:define>
+	</ui:composition>
+</html>

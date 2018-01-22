@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+		<h:form styleClass="form-inline">
+			<div class="form-group">
+				<h:outputLabel value="Código" />
+				<h:inputText styleClass="form-control" 
+					value="#{veiculoBean.codigo}" />
+			</div>
+			<h:commandButton value="Buscar" styleClass="btn btn-primary"
+				action="#{veiculoBean.buscar()}"/>			
+		</h:form>
+		<h:panelGrid columns="1">
+			<h:outputText value="#{veiculoBean.veiculo.modelo}"/>
+			<h:outputText value="#{veiculoBean.veiculo.marca}" />
+			<h:outputText value="#{veiculoBean.veiculo.preco}"/>
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>
+</html>

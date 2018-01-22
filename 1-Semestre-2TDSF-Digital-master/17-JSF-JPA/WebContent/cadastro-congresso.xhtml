@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+		<h1>#{congressoBean.congresso.codigo == 0?
+			"Cadastrar":"Atualizar"} Congresso</h1>
+		<h:messages errorClass="alert alert-danger"
+			infoClass="alert alert-success" />
+		<h:form>
+			<h:inputHidden value="#{congressoBean.congresso.codigo}" />
+			<div class="form-group">
+				<h:outputLabel value="Tema" for="tema" />
+				<h:inputText value="#{congressoBean.congresso.tema}"
+					required="true" requiredMessage="Campo obrigatório" 
+					class="form-control" id="tema" />
+				<h:message for="tema" styleClass="text-danger"/>	
+			</div>
+
+			<div class="form-group">
+				<h:outputLabel value="Data" for="data" />
+				<h:inputText value="#{congressoBean.congresso.data.time}"
+					class="form-control" id="data">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				<h:message for="data" styleClass="text-danger"/>
+			</div>
+
+
+			<div class="form-group">
+				<h:outputLabel value="Valor" for="valor" />
+				<h:inputText value="#{congressoBean.congresso.valor}"
+					class="form-control" id="valor" >
+					<f:validateDoubleRange minimum="50"/>
+				</h:inputText>
+				<h:message for="valor" styleClass="text-danger"/>
+			</div>
+
+			<div class="form-group">
+				<h:outputLabel value="Local" for="local" />
+				<h:inputText value="#{congressoBean.congresso.local}"
+					class="form-control" id="local" >
+					<f:validateLength minimum="4" maximum="50" />
+				</h:inputText>
+				<h:message for="local" styleClass="text-danger"/>	
+			</div>
+			<h:commandButton action="#{congressoBean.cadastrar()}"
+				value="Cadastar" class="btn btn-primary" />
+			<h:link outcome="lista-congresso" styleClass="btn btn-primary"
+				style="margin-left:10px;"
+				rendered="#{congressoBean.congresso.codigo != 0}">Voltar</h:link>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>
+</html>

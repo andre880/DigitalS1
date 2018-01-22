@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+		<h1>Cadastro de Veículo</h1>
+		<h:form>
+			<h:messages />
+				<div class="form-group">
+					<h:outputLabel value="Modelo" />
+					<h:inputText styleClass="form-control" 
+						value="#{veiculoBean.veiculo.modelo}" />
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Marca" />
+					<h:inputText styleClass="form-control" 
+						value="#{veiculoBean.veiculo.marca}" />
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Preço" />
+					<h:inputText styleClass="form-control" 
+						value="#{veiculoBean.veiculo.preco}" />
+				</div>
+				<div class="form-group">
+					<h:commandButton styleClass="btn btn-primary" 
+						action="#{veiculoBean.cadastrar()}" value="Cadastrar" />
+				</div>			
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+
+
+
+
+
